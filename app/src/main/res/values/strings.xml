@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">NetworkApplication</string>
+    <string name="subTitleTextView">UI Animator Viewer</string>
+    <string name="titleTextView">Tutorials point</string>
+    <string name="button">Button</string>
+</resources>
