@@ -33,8 +33,9 @@ public class MainActivity extends AppCompatActivity {
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkInternetConnection();
-                downloadImage("http://www.tutorialspoint.com/green/images/logo.png");
+                if (checkInternetConnection()) {
+                    downloadImage("http://www.tutorialspoint.com/green/images/logo.png");
+                }
             }
         });
     }
@@ -43,11 +44,15 @@ public class MainActivity extends AppCompatActivity {
         ConnectivityManager connect
                 = (ConnectivityManager) getSystemService(
                 Context.CONNECTIVITY_SERVICE);
-
-        boolean connected = connect.getActiveNetworkInfo().isConnectedOrConnecting();
-        if (connected) {
-            Toast.makeText(this, " Connected ", Toast.LENGTH_LONG).show();
-            return true;
+        if (connect.getActiveNetworkInfo()!= null) {
+            boolean connected = connect.getActiveNetworkInfo().isConnectedOrConnecting();
+            if (connected) {
+                Toast.makeText(this, " Connected ", Toast.LENGTH_LONG).show();
+                return true;
+            } else {
+                Toast.makeText(this, " Not Connected ", Toast.LENGTH_LONG).show();
+                return false;
+            }
         } else {
             Toast.makeText(this, " Not Connected ", Toast.LENGTH_LONG).show();
             return false;
